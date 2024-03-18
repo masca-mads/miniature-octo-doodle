@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 # Ignore virtual environment files
 .venv/
 # Ignore compiled python files
 *.pyc
 # Ignore editor-specific files
 .vscode/
+=======
+# Ignore virtual environment files
+.venv/
+# Ignore compiled Python files
+*.pyc
+# Ignore editor-specific files
+.vscode/
+# Ignore specific file
+assignment04_TomasCastillo.ipynb
+# Ignore jetbrains
+.idea/
+>>>>>>> 0d7956d (Trying to update branch)
