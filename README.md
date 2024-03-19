@@ -13,7 +13,8 @@ This project utilizes the package manager that comes with python - venv. You can
 ### Specific Packages
 - numpy (1.26.4)
 - pandas (2.2.1)
-- garmit-fit-sdk (21.133.0)
+- altaire (5.2.0)
+- garmit-fit-sdk (21.133.0) (no implemented)
 
 - The library to read in Garmin fit files is the [Garmin FIT SDK](https://github.com/garmin/fit-python-sdk) and is a very helpful library to read in the files that contain a lot of information.
 
@@ -23,5 +24,7 @@ The goal of this project is to follow a pipeline. The structure of that is below
 1. Read in data ('data/strava.csv') to load summary level data (`data_ingest.py`)
 2. Add features to original dataset - (`feature_addition.py`)
 3. Plot summary of data (`summary_plot.py`)
+
+Additional plans for the future (#todo) - Add in these features
 4. Load specific FIT file (`fit_ingest.py`)
 5. Plot summary of activity (`activity_summary.py`) 

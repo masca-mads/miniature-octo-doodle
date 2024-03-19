@@ -52,7 +52,7 @@ def activity_summary(df:pd.DataFrame) -> pd.DataFrame:
     Generate a quick summary of all activities
     """
 
-    activity_summary = df.groupby('fit_name').agg({
+    summary = df.groupby('fit_name').agg({
         'speed_mph': np.mean,
         'dist_mi': np.max,
         'heart_rate': np.mean,
@@ -60,7 +60,7 @@ def activity_summary(df:pd.DataFrame) -> pd.DataFrame:
         'cadence': np.mean
     })
 
-    return activity_summary
+    return summary
 
 
 if __name__ == "__main__":
