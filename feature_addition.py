@@ -2,7 +2,7 @@
 Step 2: Clean our dataframe and add some features
 """
 import pandas as pd
-
+import numpy as np
 
 def data_cleaning(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -47,6 +47,21 @@ def data_cleaning(df: pd.DataFrame) -> pd.DataFrame:
 
     return df_clean
 
+def activity_summary(df:pd.DataFrame) -> pd.DataFrame:
+    """
+    Generate a quick summary of all activities
+    """
+
+    activity_summary = df.groupby('fit_name').agg({
+        'speed_mph': np.mean,
+        'dist_mi': np.max,
+        'heart_rate': np.mean,
+        'Power': np.mean,
+        'cadence': np.mean
+    })
+
+    return activity_summary
+
 
 if __name__ == "__main__":
     import argparse
@@ -64,6 +79,7 @@ if __name__ == "__main__":
     df_strava = pd.read_csv(args.strava_file)
     print("... cleaning data...")
     df_strava = data_cleaning(df_strava)
+    df_summary = activity_summary(df_strava)
     print("\n")
     print(
         df_strava[
