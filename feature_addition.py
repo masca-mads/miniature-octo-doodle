@@ -1,3 +1,6 @@
+"""
+Step 2: Clean our dataframe and add some features
+"""
 import pandas as pd
 
 
@@ -36,7 +39,7 @@ def data_cleaning(df: pd.DataFrame) -> pd.DataFrame:
         df_clean.timestamp, utc=False
     )  # Format datetime
     df_clean["fit_name"] = df_clean["datafile"].str.extract(
-        "\/(.*.fit)"
+        r"\/(.*.fit)"
     )  # Store fit file name
     df_clean["activity_date"] = df_clean["timestamp"].apply(
         lambda x: x.date()  # Store the activity date
@@ -48,7 +51,6 @@ def data_cleaning(df: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     import argparse
     import pickle
-    import pandas as pd
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -59,12 +61,14 @@ if __name__ == "__main__":
 
     # Run arguments
     print("Loading in data ...")
-    df = pd.read_csv(args.strava_file)
+    df_strava = pd.read_csv(args.strava_file)
     print("... cleaning data...")
-    df = data_cleaning(df)
+    df_strava = data_cleaning(df_strava)
     print("\n")
     print(
-        df[["activity_date", "fit_name", "timestamp", "dist_mi", "speed_mph"]].sample(5)
+        df_strava[
+            ["activity_date", "fit_name", "timestamp", "dist_mi", "speed_mph"]
+        ].sample(5)
     )
 
     # If user specified an output
@@ -72,7 +76,7 @@ if __name__ == "__main__":
         # Saving output
         print("... and saving the output")
         with open(args.output, "wb+") as out:
-            pickle.dump(df, out)
+            pickle.dump(df_strava, out)
     else:
         print("... no save file locatio specified.")
         print('To specify a save location, use the "-o" flag')

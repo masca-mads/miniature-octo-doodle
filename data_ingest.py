@@ -1,3 +1,6 @@
+"""
+Step 1: Read in our data
+"""
 import pandas as pd
 
 
